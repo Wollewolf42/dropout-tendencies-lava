@@ -106,8 +106,6 @@
             <li class="nav-item">
                 <a class="nav-link active" href="">Distribution of Risk |<span class="sr-only">(current)</span></a>
             </li>
-
-
         </ul>
     </div>
 </nav>
@@ -116,393 +114,326 @@
 <nav>
     <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Dropout Ratio</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Line Chart</a>
-        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Stacked Bar-Chart</a>
     </div>
 </nav>
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="container">
+            <b>Survey Question:</b>
+            <span id="descr1">If i dont meet my exam expectations, i would think about dropout</span>
+            <span id="descr2">If i dont get enough support from my university, i would like think about dropout</span>
+            <span id="descr3">If i am not motivated enough to continue studying, i would think about dropout</span>
+            <span id="descr4">If i feel unhappy, i would think about dropout</span>
             <div class="row">
-                <hr>
+
             </div>
             <div class="row">
-                <div class="col-md-6 offset-md-1">
-                    <div id="my_dataviz">
-                        <p><strong>Dropout Ratio</strong></p>
-                        <p><span id="value"></span> clicking on the button will show the ratio</p>
-                        <br></br>
-                        <div id="drop" align=left></div>
+                <div class="col-md-6 offset-md-2">
+                    <div id="agreedata">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <div class="container">
-            <div class="row">
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-md-6 offset-md-1">
-                    <div id="dropout_dataviz">
-                        <p><strong>Number of students in each semester</strong></p>
-                        <p><span id="value1"></span> Upon selecting the option will show the ratio</p>
-                        <br></br>
-                        <!-- Initialize a select button -->
-                        <select id="selectButton"></select>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <div class="row justify-content-lg-center">
+        <h5>Explore by:</h5>
     </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <div class="container">
-            <div class="row">
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-md-6 offset-md-1">
-                    <div id="chart"></div>
-                </div>
-            </div>
-        </div>
+
+    <div class="row justify-content-lg-center">
+        <input type="button" name="options" id="option1" value="exam-expectations" onclick="changeAttributes('exam')" autocomplete="off">
+        <input type="button" name="options" id="option2" value="uni-support" onclick="changeAttributes('support')" autocomplete="off">
+        <input type="button" name="options" id="option3" value="study-motivation" onclick="changeAttributes('motivation')" autocomplete="off">
+        <input type="button" name="options" id="option4" value="study-happiness" onclick="changeAttributes('happiness')" autocomplete="off">
     </div>
+
 </div>
-
 <script>
+    var chart_height = 340;
+    var chart_width = 680;
 
-    d3.csv("degreewise_dropout.csv", function(row) {
-        return {
-            group : row.group,
-            d1 : row.dtech,
-            d2 : row.dfinanc,
-            d3 : row.dcont
-        };
-    }).then(function(data) {
+    var examwise = function(){
+        var a = document.getElementById("descr1");
+        var b = document.getElementById("descr2");
+        var c = document.getElementById("descr3");
+        var d = document.getElementById("descr4");
 
-        var chart = c3.generate({
-            padding: {
-                right: 10
-            },
-            bindto: '#chart',
-            data: {
-                json:data,
-                keys: {
-                    x:'group',
-                    value: ['d1', 'd2', 'd3']
-                },
-                type: 'bar',
-                //	types: {average: 'area-spline'},
-                labels: true,
-                //groups:[['a1','a2','a3','a4']],
-                names: {
-                    d1: 'Teaching Methodology',
-                    d2: 'Financial Problems',
-                    d3:  'Course Contents'
-                },
-                //groups: [
-                //  ['d1', 'd2','d3']
-                //  ]
-            },
-            axis: {
-                x: {
-                    type: 'category',
-                    label: {text:'Departments',position: 'outer-center'}
-                },
-                y: {
-                    label: {text:'Dropout ratio', position: 'outer-middle'}
+        a.style.display = "block";
+        b.style.display = "none";
+        c.style.display = "none";
+        d.style.display = "none";
+
+        var str_agree = 0;
+        var agree = 0;
+        var disagree = 0;
+        var str_disagree = 0;
+
+        d3.csv("temp.csv").then(function(data){
+            for(var i = 0; i < data.length; i++){
+                var x = data[i].examex;
+                if(x == "Strongly agree"){
+                    str_agree++;
+                } else if(x == "Agree"){
+                    agree++;
+                } else if(x == "Strongly Disagree"){
+                    str_disagree++;
+                } else if(x == "Disagree"){
+                    disagree++;
                 }
-            },
-            title: {text: 'Degree-wise Dropout'},
-            color: {pattern: ["A350D6", "#FEC75D", "#ABF058"]},
-            bar: {width: {ratio: 0.90}},
-            grid: {
-                x: {show: true},
-                y:{show:true}
-            },
-            legend: { position: 'bottom' },
-            point: { show: true },
-            zoom: { enabled: true },
+            }
+
+            entries = ['Agreement', str_agree, agree, disagree, str_disagree];
+            console.log(entries);
+            helper = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"];
+
+            var barchartAgreements = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#agreedata',
+                data: {
+                    columns: [
+                        entries
+                    ],
+                    type: 'bar',
+                    colors: {
+                        'Agreement': '#3BBFE7'
+                    }
+                },
+                legend: {
+                    position: 'right',
+                    show: false
+
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
         });
-    });
-</script>
+    };
 
-<!-- C3 Script -->
-<script>
-    // set the dimensions and margins of the graph
-    var margin = {top: 80, right: 120, bottom: 80, left: 120};
-    var width = 700 - margin.left - margin.right;
-    var height = 700 - margin.top - margin.bottom;
+    var supportwise = function(){
+        var a = document.getElementById("descr1");
+        var b = document.getElementById("descr2");
+        var c = document.getElementById("descr3");
+        var d = document.getElementById("descr4");
 
+        a.style.display = "none";
+        b.style.display = "block";
+        c.style.display = "none";
+        d.style.display = "none";
 
-    // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var str_agree = 0;
+        var agree = 0;
+        var disagree = 0;
+        var str_disagree = 0;
 
-    // Parse the Data
-    d3.csv("barchart.csv").then(function(data){
+        d3.csv("temp.csv").then(function(data){
+            for(var i = 0; i < data.length; i++){
+                var x = data[i].uni_support;
+                if(x == "Strongly agree"){
+                    str_agree++;
+                } else if(x == "Agree"){
+                    agree++;
+                } else if(x == "Strongly Disagree"){
+                    str_disagree++;
+                } else if(x == "Disagree"){
+                    disagree++;
+                }
+            }
 
-        console.log(data);
-        //Get all the colums
-        var elements = Object.keys(data[0])
-            .filter(function(d){
-                //return  (d != "Dropout");
+            entries = ['Agreement', str_agree, agree, disagree, str_disagree];
+            console.log(entries);
+            helper = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"];
+
+            var barchartAgreements = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#agreedata',
+                data: {
+                    columns: [
+                        entries
+                    ],
+                    type: 'bar',
+                    colors: {
+                        'Agreement': '#3BBFE7'
+                    },
+                },
+                legend: {
+                    position: 'right',
+                    show: false
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
             });
+        });
+    };
 
-        var selection = elements[0];
+    var motivationwise = function(){
+        var a = document.getElementById("descr1");
+        var b = document.getElementById("descr2");
+        var c = document.getElementById("descr3");
+        var d = document.getElementById("descr4");
 
-        var y = d3.scale.linear()
-            .domain([0, d3.max(data, function(d){
-                return +d[selection];
-            })])
-            .range([height, 0]);
+        a.style.display = "none";
+        b.style.display = "none";
+        c.style.display = "block";
+        d.style.display = "none";
 
-        var x = d3.scale.ordinal()
-            .rangeBands([0, width], .2)
-            .domain(data.map(function(d){ return d.Dropout;}));
 
-        // Adding Y axis
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient("left");
+        var str_agree = 0;
+        var agree = 0;
+        var disagree = 0;
+        var str_disagree = 0;
 
-        // Adding X-axis
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient("bottom").ticks(10);
+        d3.csv("temp.csv").then(function(data){
+            for(var i = 0; i < data.length; i++){
+                var x = data[i].motivation;
+                if(x == "Strongly agree"){
+                    str_agree++;
+                } else if(x == "Agree"){
+                    agree++;
+                } else if(x == "Strongly Disagree"){
+                    str_disagree++;
+                } else if(x == "Disagree"){
+                    disagree++;
+                }
+            }
 
-        //Adding colours
-        var colours = d3.scale.ordinal()
-            .range(["#3BBFE7",
-                "#FEC75D",
-                "#ABF058",
-                "#FF5230"]);
+            entries = ['Agreement', str_agree, agree, disagree, str_disagree];
+            console.log(entries);
+            helper = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"];
 
-        // Appending X axis and formatting the text
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-            .selectAll("text")
-            .style("font-size", "15px")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-50)" );
-
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
-
-        //Appending bar chart to the chart
-        svg.selectAll("rectangle")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("class","rectangle")
-            .attr("width", x.rangeBand())
-            .attr("height", function(d){
-                return height - y(+d[selection]);
-            })
-            .attr("x", function(d, i){
-                return (width / data.length) * i;
-            })
-            .attr("y", function(d){
-                return y(+d[selection]);
-            })
-            //Appending color to each bar
-            .attr("fill", function(d) { return colours(d.Dropout); })
-            .append("title")
-            .text(function(d){
-                return d.Dropout + " : " + d[selection];
+            var barchartAgreements = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#agreedata',
+                data: {
+                    columns: [
+                        entries
+                    ],
+                    type: 'bar',
+                    colors: {
+                        'Agreement': '#3BBFE7'
+                    }
+                },
+                legend: {
+                    position: 'right',
+                    show: false
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
             });
+        });
+    };
 
-        // A function that update the chart upon selecting an option from the menu
-        var selector = d3.select("#drop")
-            .append("select")
-            .attr("id","dropdown")
-            .on("change", function(d){
-                selection = document.getElementById("dropdown");
+    var happinesswise = function(){
 
-                y.domain([0, d3.max(data, function(d){
-                    return +d[selection.value];})]);
+        var a = document.getElementById("descr1");
+        var b = document.getElementById("descr2");
+        var c = document.getElementById("descr3");
+        var d = document.getElementById("descr4");
 
-                yAxis.scale(y);
+        a.style.display = "none";
+        b.style.display = "none";
+        c.style.display = "none";
+        d.style.display = "block";
 
-                d3.selectAll(".rectangle")
-                    .transition()
-                    .attr("height", function(d){
-                        return height - y(+d[selection.value]);
-                    })
-                    .attr("x", function(d, i){
-                        return (width  / data.length) * i;
-                    })
-                    .attr("y", function(d){
-                        return y(+d[selection.value]);
-                    })
-                    .ease("linear")
-                    .select("title")
-                    .text(function(d){
-                        return d.Dropout + " : " + d[selection.value];
-                    });
+        var str_agree = 0;
+        var agree = 0;
+        var disagree = 0;
+        var str_disagree = 0;
 
-                d3.selectAll("g.y.axis")
-                    .transition()
-                    .call(yAxis);
+        d3.csv("temp.csv").then(function(data){
+            for(var i = 0; i < data.length; i++){
+                var x = data[i].happiness;
+                if(x == "Strongly agree"){
+                    str_agree++;
+                } else if(x == "Agree"){
+                    agree++;
+                } else if(x == "Strongly Disagree"){
+                    str_disagree++;
+                } else if(x == "Disagree"){
+                    disagree++;
+                }
+            }
+
+            entries = ['Agreement', str_agree, agree, disagree, str_disagree];
+            console.log(entries);
+            helper = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"];
+
+            var barchartAgreements = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#agreedata',
+                data: {
+                    columns: [
+                        entries
+                    ],
+                    type: 'bar',
+                    colors: {
+                        'Agreement': '#3BBFE7'
+                    }
+                },
+                legend: {
+                    position: 'right',
+                    show: false
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
             });
+        });
+    };
 
-        // add the options to the dropdown list
-        selector.selectAll("option")
-            .data(elements)
-            .enter()
-            .append("option")
-            .attr("value",
-                // returned value by the menu
-                function(d){
-                    return d;
-                })
-            // text showed in the menu
-            .text(function(d){
-                return d;
-            });
-    });
-
-</script>
-
-<script>
-    // set the dimensions and margins of the graph
-    var margin = {top: 15, right: 35, bottom: 35, left: 65};
-    var width = 490 - margin.left - margin.right;
-    var height = 410 - margin.top - margin.bottom;
-
-    // append the svg object to the body of the page
-    var svg = d3.select("#dropout_dataviz")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-
-    //Read the data
-    d3.csv("line-chart_filter.csv", function(data) {
-
-        // List of students
-        var student = d3.map(data, function(d)
-        {
-            return(d.dstud)}).keys();
-
-        // add the options to the button
-        d3.select("#selectButton")
-            .selectAll('myOptions')
-            .data(student)
-            .enter()
-            .append('option')
-            .text(function (d)
-            {
-                return d; }) // text showed in the menu
-            .attr("value1", function (d)
-            {
-                return d; }); // returned value by the button
-
-        // A color scale: one color for each group
-        var myColor = d3.scaleOrdinal()
-            .domain(student)
-            .range(d3.schemeSet2);
-
-        // Add X axis
-        var x = d3.scaleLinear()
-            .domain(d3.extent(data, function(d)
-            {
-                return d.dsem; }))
-            //.domain([0, 50])
-            .range([ 0, width ]);
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).ticks(7));
-
-
-        // Add Y axis
-        var y = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d)
-            {
-                return +d.dratio; })])
-            .range([ height, 0 ]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        // Initialize line
-        var line = svg
-            .append('g')
-            .append("path")
-            .datum(data.filter(function(d)
-            {
-                return d.dstud==student[0]}))
-            .attr("d", d3.line()
-                .x(function(d)
-                {
-                    return x(d.dsem) }) // return Semesters
-                .y(function(d)
-                {
-                    return y(+d.dratio) }) //Return number of student of student in each semester based on the selection
-            )
-            .attr("stroke", function(d)
-            {
-                return myColor("valueA") })
-            .style("stroke-width", 4)
-            .style("fill", "none")
-            .text(function(d){ return d.dratio; });
-
-        svg.append("text")
-            .attr("class", "label")
-            .attr("y", height/100)
-            .attr("x", width/2)
-            .attr("text-anchor", "middle")
-            .text("Semesters")
-
-        svg.append("text")
-            .attr("transform", "rotate(-90)")
-            //.text("Range")
-            .attr("y", -29)
-            .attr("x", -(height/2))
-            .attr("text-anchor", "middle")
-            .text('Number of Students');
-
-
-        // A function that update the chart
-        function update(selectedStudent) {
-
-            // Create new data with the selection?
-            var dataFilter = data.filter(function(d)
-            {
-                return d.dstud==selectedStudent})
-
-            // Give these new data to update line
-            line
-                .datum(dataFilter)
-                .transition()
-                .duration(1000)
-                .attr("d", d3.line()
-                    .x(function(d) { return x(d.dsem) })
-                    .y(function(d) { return y(+d.dratio) })
-                )
-                .attr("stroke", function(d){ return myColor(selectedStudent) });
+    // Function for Selection
+    var changeAttributes = function(attribute){
+        if(attribute == "exam"){
+            examwise();
+        } else if(attribute == "support"){
+            supportwise();
+        } else if(attribute == "motivation"){
+            motivationwise();
+        } else if(attribute == "happiness"){
+            happinesswise();
         }
+    };
 
-        // Upon changing the button, run the updateChart function
-        d3.select("#selectButton").on("change", function(d) {
-            //Select the option that has been chosen
-            var selectedOption = d3.select(this).property("value1");
-            // Run the updateChart function with the selected option
-            update(selectedOption);
-        });
-    });
+    d3.select("#option1").on("input", changeAttributes);
+
+    examwise();
+
 </script>
+
 </body>
 </html>
