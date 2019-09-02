@@ -7,8 +7,11 @@
 
 # File-structure
 index.html
-- comparision.html
--- dropout-tendency.html
--- students-at-risk.html
+
+comparision.html
+
+dropout-tendency.html
+
+students-at-risk.html
 
 cleaned csv-file: temp.csv
