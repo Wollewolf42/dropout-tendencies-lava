@@ -1,4 +1,8 @@
 # dropout-tendencies-lava
+This project was run at university of duisburg-essen at the lava-project in winter term 2019/2020.
+
+Authors: V. Yücepur, A. Khan, E. Lohoff and E. Valipour
+
 Youtube Video of the project: https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be
 
 
