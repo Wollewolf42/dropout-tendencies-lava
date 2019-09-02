@@ -1,4 +1,6 @@
 # dropout-tendencies-lava
+Youtube Video of the project: https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be
+
 
 # dependencies
 - Bootstrap 4.1.3
