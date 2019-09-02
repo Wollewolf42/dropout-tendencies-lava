@@ -1,0 +1,85 @@
+ID,Dsex,Dage,Dcont,Dstud,Dfac,Dsem,Dtarg,helpseek,reason,examex,teachmeth,uni-support,motivation,happiness,helpseek-nrm,examex-nrm,teachmeth-nrm,uni-support-nrm,motivation-nrm,happiness-nrm,tendency-score,tendency,risk
+31,Female,25,Asia,Domestic,Social Science,6,Bachelor,Helpseeking,Disinterest Content,Strongly agree,Helpseeking,Agree,Agree,Agree,1,-2,1,-1,-1,-1,-3,Dropout,High Risk
+27,Male,35,Asia,Domestic,Engineering,6,Master,Helpseeking,Other,Agree,Helpseeking,Agree,Strongly Agree,Agree,1,-1,1,-1,-2,-1,-3,Dropout,High Risk
+44,Male,39,Asia,Domestic,Engineering,2,Master,Helpseeking,Disinterest Content,Agree,Dropout,Agree,Agree,Agree,1,-1,-1,-1,-1,-1,-4,Dropout,High Risk
+23,Male,25,Asia,Domestic,Other,4,Master,Helpseeking,No Enjoy,Disagree,Dropout,Agree,Strongly Agree,Strongly Agree,1,1,-1,-1,-2,-2,-4,Dropout,High Risk
+52,Male,35,Asia,Domestic,Humanities,1,Other,Dropout,Other,Disagree,Dropout,Agree,Agree,Agree,-1,1,-1,-1,-1,-1,-4,Dropout,High Risk
+24,Female,27,Asia,Domestic,Humanities,4,Master,Helpseeking,Hardship Course,Agree,Helpseeking,Agree,Disagree,Strongly Agree,1,-1,1,-1,1,-2,-1,Dropout,Low Risk
+34,Male,25,Asia,Domestic,Engineering,6,Bachelor,Helpseeking,Other,Disagree,Helpseeking,Strongly Agree,Agree,Agree,1,1,1,-2,-1,-1,-1,Dropout,Low Risk
+51,Female,30,Asia,Domestic,Engineering,2,Bachelor,Dropout,Disinterest Content,Disagree,Helpseeking,Agree,Agree,Agree,-1,1,1,-1,-1,-1,-2,Dropout,Low Risk
+41,Female,29,Asia,Domestic,Engineering,3,Bachelor,Helpseeking,No Enjoy,Agree,Helpseeking,Agree,Agree,Agree,1,-1,1,-1,-1,-1,-2,Dropout,Low Risk
+66,Male,35,Asia,Domestic,Engineering,8,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Agree,Agree,1,1,1,-1,-1,-1,0,Dropout,No Risk
+49,Female,34,Asia,Domestic,Social Science,2,Phd,Helpseeking,No Enjoy,Agree,Helpseeking,Agree,Disagree,Agree,1,-1,1,-1,1,-1,0,Dropout,No Risk
+42,Female,39,Asia,Domestic,Social Science,18,Bachelor,Helpseeking,No Enjoy,Disagree,Helpseeking,Disagree,Disagree,Agree,1,1,1,1,1,-1,4,Helpseeking,No Risk
+71,Female,28,Asia,Domestic,Engineering,4,Master,Helpseeking,Other,Disagree,Helpseeking,Agree,Strongly Disagree,Agree,1,1,1,-1,2,-1,3,Helpseeking,No Risk
+47,Male,27,Europe,Domestic,Other,5,Master,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Agree,Strongly Agree,1,1,1,-1,-1,-2,-1,Dropout,Low Risk
+96,Male,28,Europe,Domestic,Social Science,4,Bachelor,Helpseeking,Other,Disagree,Not important,Disagree,Strongly Agree,Strongly Agree,1,1,0,1,-2,-2,-1,Dropout,Low Risk
+61,Female,21,Europe,Domestic,Engineering,6,Master,Helpseeking,No Enjoy,Disagree,Not important,Strongly Agree,Agree,Agree,1,1,0,-2,-1,-1,-2,Dropout,Low Risk
+72,Female,21,Europe,Domestic,Education,4,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Agree,Agree,1,1,1,-1,-1,-1,0,Dropout,No Risk
+58,Female,22,Europe,Domestic,Engineering,4,Bachelor,Helpseeking,Disinterest Content,Strongly agree,Not important,Strongly Disagree,Disagree,Strongly Agree,,-2,0,2,1,-2,0,Dropout,No Risk
+95,Other,25,Europe,Domestic,Other,6,Bachelor,Helpseeking,Disinterest Content,Agree,Helpseeking,Strongly Disagree,Agree,Strongly Agree,1,-1,1,2,-1,-2,0,Dropout,No Risk
+48,Female,24,Europe,Domestic,Economics,6,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Strongly Disagree,Strongly Agree,Disagree,1,1,1,2,-2,1,4,Helpseeking,No Risk
+80,Male,23,Europe,Domestic,Economics,6,Bachelor,Helpseeking,Disinterest Content,Strongly Disagree,Helpseeking,Agree,Agree,Agree,1,2,1,-1,-1,-1,1,Helpseeking,No Risk
+13,Female,22,Europe,Domestic,Engineering,4,Bachelor,Helpseeking,Disinterest Content,Agree,Not important,Strongly Disagree,Strongly Disagree,Agree,1,-1,0,2,2,-1,3,Helpseeking,No Risk
+35,Female,21,Europe,Domestic,Engineering,4,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Disagree,Agree,Agree,1,1,1,1,-1,-1,2,Helpseeking,No Risk
+62,Male,28,Europe,Domestic,Other,4,Bachelor,Helpseeking,Disinterest Content,Disagree,Dropout,Agree,Disagree,Disagree,1,1,-1,-1,1,1,2,Helpseeking,No Risk
+83,Male,26,Europe,Domestic,Other,11,Bachelor,Helpseeking,Disinterest Content,Disagree,Not important,Disagree,Disagree,Disagree,1,1,0,1,1,1,5,Helpseeking,No Risk
+43,Male,26,Europe,Domestic,Other,4,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Disagree,Disagree,Disagree,1,1,1,1,1,1,6,Helpseeking,No Risk
+67,Female,23,Europe,Domestic,Economics,12,Master,Helpseeking,Disinterest Content,Disagree,Not important,Strongly Disagree,Disagree,Disagree,1,1,0,2,1,1,6,Helpseeking,No Risk
+53,Female,25,Europe,Domestic,Economics,4,Master,Helpseeking,Disinterest Content,Disagree,Helpseeking,Disagree,Disagree,Agree,1,1,1,1,1,-1,4,Helpseeking,No Risk
+87,Male,24,Europe,Domestic,Economics,6,Master,Helpseeking,Disinterest Content,Strongly Disagree,Helpseeking,Disagree,Disagree,Agree,1,2,1,1,1,-1,5,Helpseeking,No Risk
+60,Male,26,Europe,Domestic,Engineering,4,Master,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Disagree,Disagree,1,1,1,-1,1,1,4,Helpseeking,No Risk
+82,Female,24,Europe,Domestic,Other,4,Master,Helpseeking,Disinterest Content,Agree,Helpseeking,Agree,Disagree,Strongly Disagree,1,-1,1,-1,1,2,3,Helpseeking,No Risk
+78,Female,21,Europe,Domestic,Other,6,Phd,Helpseeking,Disinterest Content,Disagree,Helpseeking,Disagree,Agree,Disagree,1,1,1,1,-1,1,4,Helpseeking,No Risk
+54,Male,30,Europe,Domestic,Economics,6,Bachelor,Helpseeking,Hardship Course,Agree,Helpseeking,Agree,Agree,Disagree,1,-1,1,-1,-1,1,0,Dropout,No Risk
+81,Male,25,Europe,Domestic,Engineering,12,Master,Helpseeking,Hardship Course,Disagree,Helpseeking,Agree,Agree,Agree,1,1,1,-1,-1,-1,0,Dropout,No Risk
+45,Female,22,Europe,Domestic,Economics,6,Bachelor,Helpseeking,Hardship Course,Disagree,Helpseeking,Disagree,Disagree,Disagree,1,1,1,1,1,1,6,Helpseeking,No Risk
+69,Female,23,Europe,Domestic,Engineering,8,Bachelor,Helpseeking,Hardship Course,Disagree,Not important,Disagree,Strongly Disagree,Disagree,1,1,0,1,2,1,6,Helpseeking,No Risk
+93,Male,23,Europe,Domestic,Social Science,6,Bachelor,Helpseeking,Hardship Course,Agree,Helpseeking,Disagree,Disagree,Strongly Agree,1,-1,1,1,1,-2,1,Helpseeking,No Risk
+55,Female,22,Europe,Domestic,Engineering,3,Master,Helpseeking,Hardship Course,Agree,Not important,Disagree,Strongly Disagree,Strongly Disagree,1,-1,0,1,2,2,5,Helpseeking,No Risk
+21,Male,23,Europe,Domestic,Humanities,4,Master,Helpseeking,Hardship Course,Disagree,Helpseeking,Disagree,Disagree,Agree,1,1,1,1,1,-1,4,Helpseeking,No Risk
+15,Male,12,Europe,Domestic,Humanities,10,Master,Dropout,No Enjoy,Agree,Helpseeking,Disagree,Strongly Disagree,Strongly Agree,-1,-1,1,1,2,-2,0,Dropout,No Risk
+86,Male,28,Europe,Domestic,Other,6,Bachelor,Helpseeking,No Enjoy,Disagree,Helpseeking,Disagree,Agree,Agree,1,1,1,1,-1,-1,2,Helpseeking,No Risk
+37,Male,30,Europe,Domestic,Engineering,5,Master,Helpseeking,No Enjoy,Agree,Not important,Disagree,Agree,Strongly Disagree,1,-1,0,1,-1,2,2,Helpseeking,No Risk
+88,Male,23,Europe,Domestic,Social Science,3,Master,Helpseeking,No Enjoy,Disagree,Not important,Strongly Disagree,Agree,Disagree,1,1,0,2,-1,1,4,Helpseeking,No Risk
+77,Female,35,Europe,Domestic,Humanities,6,Master,Helpseeking,Other,Disagree,Dropout,Agree,Disagree,Agree,1,1,-1,-1,1,-1,0,Dropout,No Risk
+50,Male,27,Europe,Domestic,Economics,7,Bachelor,Helpseeking,Other,Disagree,Helpseeking,Disagree,Disagree,Agree,1,1,1,1,1,-1,4,Helpseeking,No Risk
+70,Female,22,Europe,Domestic,Economics,7,Bachelor,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Strongly Disagree,Agree,1,2,1,2,2,-1,7,Helpseeking,No Risk
+57,Female,27,Europe,Domestic,Economics,6,Bachelor,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Strongly Disagree,Strongly Disagree,1,2,1,2,2,2,10,Helpseeking,No Risk
+76,Male,24,Europe,Domestic,Engineering,8,Bachelor,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Strongly Agree,Strongly Agree,1,2,1,2,-2,-2,2,Helpseeking,No Risk
+36,Male,32,Europe,Domestic,Other,13,Bachelor,Helpseeking,Other,Disagree,Not important,Disagree,Agree,Disagree,1,1,0,1,-1,1,3,Helpseeking,No Risk
+85,Male,31,Europe,Domestic,Other,14,Bachelor,Helpseeking,Other,Disagree,Helpseeking,Disagree,Disagree,Disagree,1,1,1,1,1,1,6,Helpseeking,No Risk
+75,Female,22,Europe,Domestic,Social Science,4,Bachelor,Helpseeking,Other,Disagree,Not important,Disagree,Strongly Disagree,Agree,1,1,0,1,2,-1,4,Helpseeking,No Risk
+90,Female,23,Europe,Domestic,Social Science,4,Bachelor,Helpseeking,Other,Disagree,Helpseeking,Disagree,Agree,Agree,1,1,1,1,-1,-1,2,Helpseeking,No Risk
+56,Female,21,Europe,Domestic,Social Science,4,Bachelor,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Disagree,Disagree,1,2,1,2,1,1,8,Helpseeking,No Risk
+59,Female,31,Europe,Domestic,Engineering,6,Master,Helpseeking,Other,Disagree,Helpseeking,Disagree,Agree,Agree,1,1,1,1,-1,-1,2,Helpseeking,No Risk
+46,Male,26,Africa,International,Engineering,5,Master,Helpseeking,No Enjoy,Strongly Disagree,Not important,Strongly Disagree,Strongly Disagree,Strongly Disagree,1,2,0,2,2,2,9,Helpseeking,No Risk
+14,Male,65,America,International,Engineering,5,Master,Helpseeking,Disinterest Content,Agree,Helpseeking,Agree,Strongly Agree,Strongly Agree,1,-1,1,-1,-2,-2,-4,Dropout,High Risk
+94,Other,26,America,International,Physics,2,Master,Dropout,Other,Disagree,Not important,Agree,Strongly Disagree,Strongly Agree,-1,1,0,-1,2,-2,-1,Dropout,Low Risk
+17,Male,30,Asia,International,Engineering,2,Master,Helpseeking,Disinterest Content,Agree,Helpseeking,Strongly Agree,Agree,Agree,1,-1,1,-2,-1,-1,-3,Dropout,High Risk
+22,Male,26,Asia,International,Engineering,8,Master,Helpseeking,Hardship Course,Agree,Dropout,Agree,Agree,Agree,1,-1,-1,-1,-1,-1,-4,Dropout,High Risk
+26,Female,32,Asia,International,Other,2,Bachelor,Helpseeking,Other,Agree,Helpseeking,Strongly Agree,Agree,Strongly Agree,1,-1,1,-2,-1,-2,-4,Dropout,High Risk
+39,Male,23,Asia,International,Biology,2,Phd,Dropout,Other,Strongly agree,Not important,Agree,Strongly Agree,Strongly Agree,-1,-2,0,-1,-2,-2,-8,Dropout,High Risk
+25,Male,29,Asia,International,Engineering,9,Other,Helpseeking,No Enjoy,Disagree,Helpseeking,Agree,Strongly Agree,Strongly Agree,1,1,1,-1,-2,-2,-2,Dropout,Low Risk
+73,Female,22,Asia,International,Humanities,2,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Disagree,Agree,1,1,1,-1,1,-1,2,Helpseeking,No Risk
+32,Female,26,Asia,International,Other,2,Master,Helpseeking,Disinterest Content,Strongly Disagree,Not important,Disagree,Disagree,Disagree,1,2,0,1,1,1,6,Helpseeking,No Risk
+92,Other,20,Asia,International,Humanities,2,Bachelor,Helpseeking,Hardship Course,Disagree,Helpseeking,Agree,Disagree,Agree,1,1,1,-1,1,-1,2,Helpseeking,No Risk
+19,Male,32,Asia,International,Engineering,3,Master,Helpseeking,Hardship Course,Agree,Helpseeking,Agree,Strongly Disagree,Disagree,1,-1,1,-1,2,1,3,Helpseeking,No Risk
+33,Male,24,Asia,International,Engineering,4,Master,Helpseeking,Hardship Course,Disagree,Helpseeking,Agree,Disagree,Agree,1,1,1,-1,1,-1,2,Helpseeking,No Risk
+16,Male,26,Asia,International,Engineering,5,Master,Helpseeking,Hardship Course,Strongly Disagree,Helpseeking,Disagree,Disagree,Disagree,1,2,1,1,1,1,7,Helpseeking,No Risk
+38,Male,28,Asia,International,Engineering,2,Master,Helpseeking,No Enjoy,Agree,Helpseeking,Disagree,Agree,Agree,1,-1,1,1,-1,-1,0,Dropout,No Risk
+68,Female,27,Asia,International,Engineering,2,Master,Helpseeking,No Enjoy,Agree,Helpseeking,Disagree,Agree,Agree,1,-1,1,1,-1,-1,0,Dropout,No Risk
+65,Female,35,Asia,International,Engineering,4,Phd,Helpseeking,No Enjoy,Disagree,Helpseeking,Disagree,Disagree,Disagree,1,1,1,1,1,1,6,Helpseeking,No Risk
+74,Male,27,Asia,International,Other,2,Bachelor,Helpseeking,Other,Strongly Disagree,Not important,Disagree,Disagree,Strongly Disagree,1,2,0,1,1,2,7,Helpseeking,No Risk
+29,Male,24,Asia,International,Engineering,4,Master,Helpseeking,Other,Strongly Disagree,Not important,Disagree,Disagree,Strongly Disagree,1,2,0,1,1,2,7,Helpseeking,No Risk
+63,Female,32,Asia,International,Engineering,3,Master,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Strongly Disagree,Disagree,1,2,1,2,2,1,9,Helpseeking,No Risk
+40,Female,27,Europe,International,Engineering,2,Master,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Agree,Agree,1,1,1,-1,-1,-1,0,Dropout,No Risk
+64,Female,22,Europe,International,Other,1,Bachelor,Helpseeking,Disinterest Content,Disagree,Helpseeking,Agree,Strongly Disagree,Strongly Agree,1,1,1,-1,2,-2,2,Helpseeking,No Risk
+89,Female,24,Europe,International,Engineering,4,Master,Helpseeking,Disinterest Content,Disagree,Helpseeking,Disagree,Strongly Agree,Agree,1,1,1,1,-2,-1,1,Helpseeking,No Risk
+30,Female,26,Europe,International,Engineering,4,Master,Helpseeking,Disinterest Content,Strongly Disagree,Helpseeking,Disagree,Disagree,Disagree,1,2,1,1,1,1,7,Helpseeking,No Risk
+91,Female,27,Europe,International,Humanities,2,Master,Helpseeking,Disinterest Content,Strongly Disagree,Not important,Strongly Disagree,Disagree,Disagree,1,2,0,2,1,1,7,Helpseeking,No Risk
+20,Male,24,Europe,International,Engineering,4,Master,Helpseeking,Hardship Course,Disagree,Helpseeking,Disagree,Agree,Agree,1,1,1,1,-1,-1,2,Helpseeking,No Risk
+79,Female,25,Europe,International,Social Science,8,Bachelor,Helpseeking,No Enjoy,Disagree,Helpseeking,Agree,Disagree,Agree,1,1,1,-1,1,-1,2,Helpseeking,No Risk
+18,Male,26,Europe,International,Engineering,6,Master,Helpseeking,No Enjoy,Strongly Disagree,Helpseeking,Disagree,Agree,Agree,1,2,1,1,-1,-1,3,Helpseeking,No Risk
+28,Male,29,Europe,International,Engineering,8,Master,Helpseeking,Other,Agree,Helpseeking,Disagree,Disagree,Disagree,1,-1,1,1,1,1,4,Helpseeking,No Risk
+84,Male,23,Europe,International,Engineering,1,Master,Helpseeking,Other,Strongly Disagree,Helpseeking,Strongly Disagree,Disagree,Disagree,1,2,1,2,1,1,8,Helpseeking,No Risk

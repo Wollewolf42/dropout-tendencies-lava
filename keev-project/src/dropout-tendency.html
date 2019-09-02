@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Load c3.css -->
+    <link href="../c3-0.7.1/c3.css" rel="stylesheet">
+    <link href="../bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../jquery-3.4.1.min.js"></script>
+    <script src="../bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <!-- Load d3.js and c3.js -->
+    <script src="../d3/d3.min.js" charset="utf-8"></script>
+    <script src="../c3-0.7.1/c3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<!-- MAIN NAVIGATION BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand disabled" href="#">KEEV Platform</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <!-- LINK FOR HOME -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home |<span class="sr-only">(current)</span></a>
+            </li>
+
+            <!-- COMPARE ACTIONS -->
+            <li class="nav-item">
+                <a class="nav-link active" href="comparision.html">Compare <span class="sr-only">(current)</span></a>
+            </li>
+
+            <!-- COMPARE ACTIONS -->
+            <li class="nav-item">
+                <a class="nav-link active" href="dropout-tendency.html">Dropout Tendencies <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="students-at-risk.html">Distribution of Risk |<span class="sr-only">(current)</span></a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+<nav>
+    <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" onclick="stackclick()" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Stacked Bar-Charts</a>
+        <a class="nav-item nav-link" onclick="heatclick()" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Heatmap</a>
+    </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+
+    <div class="container" style="max-width: 1600px">
+
+            <!-- Stacked Bar-chart Tab -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                <div id="tab-stacked" style="display: block">
+                    <div class="row">
+                        <div class="col col-lg-2">
+                            <div class="" id="filter-continents" style="display: none">
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input" value="asia" id="filter-asia" checked>
+                                    <label>Asia</label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input" value="europe" id="filter-europe" checked>
+                                    <label>Europe</label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input" value="america" id="filter-america" checked>
+                                    <label>America</label>
+                                </div>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input" value="africa" id="filter-africa" checked>
+                                    <label>Africa</label>
+                                </div>
+
+                            </div>
+                            <div class="" id="filter-faculties" style="display: none">
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="biology"  id="filter-biology" checked>
+                                    <label>Biology</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="economics" id="filter-economics" checked>
+                                    <label>Economics</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="education" id="filter-education" checked>
+                                    <label>Education</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="engineering" id="filter-engineering" checked>
+                                    <label>Engineering</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="humanities" id="filter-humanities" checked>
+                                    <label>Humanities</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="physics" id="filter-physics" checked>
+                                    <label>Physics</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="sosci" id="filter-sosci" checked>
+                                    <label>Social Sciences</label>
+                                </div>
+                                <div class="input-combination">
+                                    <input type="checkbox" class="CB" value="others" id="filter-others" checked>
+                                    <label>Others</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- C3/D3 Charts -->
+                        <div class="justify-content-lg-center" id="stacked-dropout-tendency"></div>
+                        <div class="justify-content-lg-center offset-2" id="stacked-dropout-tendency-nrm"></div>
+
+                    </div>
+
+                    <div class="row justify-content-lg-center">
+                        <h5>Explore by:</h5>
+                    </div>
+
+                    <div class="row justify-content-lg-center">
+                        <input type="button" name="options" id="option1" value="nationality" onclick="changeAttributes('nationality')" autocomplete="off">
+                        <input type="button" name="options" id="option2" value="continent" onclick="changeAttributes('continent')" autocomplete="off">
+                        <input type="button" name="options" id="option3" value="faculty" onclick="changeAttributes('faculty')" autocomplete="off">
+                        <input type="button" name="options" id="option4" value="reason" onclick="changeAttributes('reason')" autocomplete="off">
+                        <input type="button" name="options" id="option5" value="risk" onclick="changeAttributes('risk')" autocomplete="off">
+                        <input type="button" name="options" id="option6" value="age" onclick="changeAttributes('age')" autocomplete="off">
+                        <input type="button" name="options" id="option7" value="sex" onclick="changeAttributes('sex')" autocomplete="off">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+            <!-- Heatmap Tab -->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="justify-content: center">
+                <div class="offset-2" id="tab-heatmap" style="display: none; max-width: 1000px;" >
+                    <div id="risk-age-heatmap"></div>
+                </div>
+
+            </div>
+
+
+
+    </div>
+</div>
+
+
+
+<!-- C3 Script -->
+<script>
+    //handle visibily of stack-tab and heatmap
+    var x_tab = document.getElementById("tab-stacked");
+    var y_tab = document.getElementById("tab-heatmap");
+
+    var stackclick = function(){
+        console.log("Stack is clicked");
+        x_tab.style.display = 'block';
+        y_tab.style.display = 'none';
+    };
+
+    var heatclick = function(){
+        console.log("Heatmap tab clicked");
+        x_tab.style.display = 'none';
+        y_tab.style.display = 'block';
+        heatmap();
+    };
+
+    var heatmap = function(){
+
+        var risk_age_heatmap = document.getElementById('risk-age-heatmap');
+
+        d3.csv("temp.csv").then(function(data){
+
+
+
+            var Age = ['0 - 24', '25 - 29', '30+'];
+            var Risk = ['No Risk', 'Low Risk', 'High Risk'];
+
+            var result = [];
+
+            var helpNoR = [];
+            var helpLoR = [];
+            var helpHiR = [];
+
+
+            var young_no = 0;
+            var young_no_drop = 0;
+            var young_no_help = 0;
+
+            var young_low = 0;
+            var young_low_drop = 0;
+            var young_low_help = 0;
+
+            var young_high = 0;
+            var young_high_drop = 0;
+            var young_high_help = 0;
+
+            var mid_no = 0;
+            var mid_no_drop = 0;
+            var mid_no_help = 0;
+
+            var mid_low = 0;
+            var mid_low_drop = 0;
+            var mid_low_help = 0;
+
+            var mid_high = 0;
+            var mid_high_drop = 0;
+            var mid_high_help = 0;
+
+            var old_no = 0;
+            var old_no_drop = 0;
+            var old_no_help = 0;
+
+            var old_low = 0;
+            var old_low_drop = 0;
+            var old_low_help = 0;
+
+            var old_high = 0;
+            var old_high_drop = 0;
+            var old_high_help = 0;
+
+
+            for(var i = 1; i < data.length; i++){
+
+                if(data[i].Dage < 25 && data[i].risk == "No Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        young_no_drop++;
+                    } else {
+                        young_no_help++;
+                    }
+                } else if(data[i].Dage < 25 && data[i].risk == "Low Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        young_low_drop++;
+                    } else {
+                        young_low_help++;
+                    }
+                } else if(data[i].Dage < 25 && data[i].risk == "High Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        young_high_drop++;
+                    } else {
+                        young_high_help++;
+                    }
+                } else if(data[i].Dage >= 25 && data[i].Dage <= 29 && data[i].risk == "No Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        mid_no_drop++;
+                    } else {
+                        mid_no_help++;
+                    }
+                } else if(data[i].Dage >= 25 && data[i].Dage <= 29 && data[i].risk == "Low Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        mid_low_drop++;
+                    } else {
+                        mid_low_help++;
+                    }
+                } else if(data[i].Dage >= 25 && data[i].Dage <= 29 && data[i].risk == "High Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        mid_high_drop++;
+                    } else {
+                        mid_high_help++;
+                    }
+                } else if(data[i].Dage >= 30 && data[i].risk == "No Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        old_no_drop++;
+                    } else {
+                        old_no_help++;
+                    }
+                } else if(data[i].Dage >= 30 && data[i].risk == "Low Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        old_low_drop++;
+                    } else {
+                        old_low_help++;
+                    }
+                } else if(data[i].Dage >= 30 && data[i].risk == "High Risk"){
+                    if(data[i].tendency == "Dropout"){
+                        old_high_drop++;
+                    } else {
+                        old_high_help++;
+                    }
+                }
+            }
+
+            // 0 := Helpseeking
+            // 1 := Dropout
+            // 0.5 := Inbetween
+
+            if(young_no_help == young_no_drop) {
+                young_no = 0.5;
+            } else if(young_no_help > young_no_drop){
+                young_no = 0;
+            } else {
+                young_no = 1;
+            }
+            if(young_low_help == young_low_drop) {
+                young_low = 0.5;
+            } else if(young_low_help > young_low_drop){
+                young_low = 0;
+            } else {
+                young_low = 1;
+            }
+            if(young_high_help == young_high_drop) {
+                young_high = 0.5;
+            } else if(young_high_help > young_high_drop){
+                young_high = 0;
+            } else {
+                young_high = 1;
+            }
+
+            if(mid_no_help == mid_no_drop) {
+                mid_no = 0.5;
+            } else if(mid_no_help > mid_no_drop){
+                mid_no = 0;
+            } else {
+                mid_no = 1;
+            }
+            if(mid_low_help == mid_low_drop) {
+                mid_low = 0.5;
+            } else if(mid_low_help > mid_low_drop){
+                mid_low = 0;
+            } else {
+                mid_low = 1;
+            }
+            if(mid_high_help == mid_high_drop) {
+                mid_high = 0.5;
+            } else if(mid_high_help > mid_high_drop){
+                mid_high = 0;
+            } else {
+                mid_high = 1;
+            }
+
+            if(old_no_help == old_no_drop) {
+                old_no = 0.5;
+            } else if(old_no_help > old_no_drop){
+                old_no = 0;
+            } else {
+                old_no = 1;
+            }
+            if(old_low_help == old_low_drop) {
+                old_low = 0.5;
+            } else if(old_low_help > old_low_drop){
+                old_low = 0;
+            } else {
+                old_low = 1;
+            }
+            if(old_high_help == old_high_drop) {
+                old_high = 0.5;
+            } else if(old_high_help > old_high_drop){
+                old_high = 0;
+            } else {
+                old_high = 1;
+            }
+
+            helpNoR.push(young_no, mid_no, old_no);
+            helpLoR.push(young_low, mid_low, old_low);
+            helpHiR.push(young_high, mid_high, old_high);
+            result.push(helpNoR, helpLoR, helpHiR);
+
+            var entries = [
+                {
+                    z: result,
+                    x: Age,
+                    y: Risk,
+                    colorscale: [
+                        ['0.0', 'rgb(59,191,231)'],
+                        ['1.0', 'rgb(254,199,93)']
+                    ],
+                    type: 'heatmap'
+                }
+            ];
+            Plotly.newPlot(risk_age_heatmap, entries);
+        });
+
+    };
+
+    // set chart dimensions globally
+    var chart_height = 340;
+    var chart_width = 960;
+
+    // input field (0:= not checked, 1:= checked)
+    // in the beginning checked (1)
+    var inputfieldAsia = 1;
+    var inputfieldEurope = 1;
+    var inputfieldAmerica = 1;
+    var inputfieldAfrica = 1;
+    var inputfieldBiology = 1;
+    var inputfieldEconomics = 1;
+    var inputfieldEducation = 1;
+    var inputfieldEngineering = 1;
+    var inputfieldHumanities = 1;
+    var inputfieldPhysics = 1;
+    var inputfieldSosci = 1;
+    var inputfieldOthers = 1;
+
+    // function for cleaning the checkboxes
+    // if you go to another view, the checkboxes should be rechecked
+    var cleanCheckboxes = function(){
+        if(inputfieldAsia == 0){
+            inputfieldAsia = 1;
+            document.getElementById("filter-asia").setAttribute("checked", "checked");
+            document.getElementById("filter-asia").checked = true;
+        } if(inputfieldEurope == 0){
+            inputfieldEurope = 1;
+            document.getElementById("filter-europe").setAttribute("checked", "checked");
+            document.getElementById("filter-europe").checked = true;
+        } if(inputfieldAmerica == 0){
+            inputfieldAmerica = 1;
+            document.getElementById("filter-america").setAttribute("checked", "checked");
+            document.getElementById("filter-america").checked = true;
+        } if(inputfieldAfrica == 0){
+            inputfieldAfrica = 1;
+            document.getElementById("filter-africa").setAttribute("checked", "checked");
+            document.getElementById("filter-africa").checked = true;
+        } if(inputfieldBiology == 0){
+            inputfieldBiology = 1;
+            document.getElementById("filter-biology").setAttribute("checked", "checked");
+            document.getElementById("filter-biology").checked = true;
+        } if(inputfieldEconomics == 0){
+            inputfieldEconomics = 1;
+            document.getElementById("filter-economics").setAttribute("checked", "checked");
+            document.getElementById("filter-economics").checked = true;
+        } if(inputfieldEducation == 0){
+            inputfieldEducation = 1;
+            document.getElementById("filter-education").setAttribute("checked", "checked");
+            document.getElementById("filter-education").checked = true;
+        } if(inputfieldEngineering == 0){
+            inputfieldEngineering = 1;
+            document.getElementById("filter-engineering").setAttribute("checked", "checked");
+            document.getElementById("filter-engineering").checked = true;
+        } if(inputfieldHumanities == 0){
+            inputfieldHumanities = 1;
+            document.getElementById("filter-humanities").setAttribute("checked", "checked");
+            document.getElementById("filter-humanities").checked = true;
+        } if(inputfieldPhysics == 0){
+            inputfieldPhysics = 1;
+            document.getElementById("filter-physics").setAttribute("checked", "checked");
+            document.getElementById("filter-physics").checked = true;
+        } if(inputfieldSosci == 0){
+            inputfieldSosci = 1;
+            document.getElementById("filter-sosci").setAttribute("checked", "checked");
+            document.getElementById("filter-sosci").checked = true;
+        } if(inputfieldOthers == 0){
+            inputfieldOthers = 1;
+            document.getElementById("filter-others").setAttribute("checked", "checked");
+            document.getElementById("filter-others").checked = true;
+        }
+    };
+
+    // Charts with Filtering
+
+    // render charts for continent-wise view
+    var Continentwise = function(){
+        // if the checkboxes are clicked, clean it
+        cleanCheckboxes();
+
+        // handle the visibilty of the filter fields
+        var x = document.getElementById("filter-continents");
+        // none == hide
+        // block == show
+        var hide = function(){
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        };
+        if(x.style.display !== "block"){
+            hide();
+        }
+        document.getElementById("filter-faculties").style.display = "none";
+
+        // declare the variables
+        var entries = [];
+        var helper = [];
+        var entries_nrm = [];
+        var helper_nrm = [];
+
+        var Asia = [];
+        var Europe = [];
+        var America = [];
+        var Africa = [];
+
+        var Asia_Nrm = [];
+        var Europe_Nrm = [];
+        var America_Nrm = [];
+        var Africa_Nrm = [];
+
+        var asiadropout = 0;
+        var asiahelps = 0;
+        var eurdropout = 0;
+        var eurhelps = 0;
+        var amidropout = 0;
+        var amihelps = 0;
+        var afrdropout = 0;
+        var afrhelps = 0;
+
+        // load main file and render the chart
+        d3.csv("temp.csv").then(function(data){
+
+            // filter by Dcont and dropout tendency
+            // write the sum of the fields into the target variables
+            for(var i = 1; i < data.length; i++){
+                var x = data[i].Dcont;
+                var y = data[i].tendency;
+                if(x == "Asia"){
+                    if(y == "Dropout"){ asiadropout++; } else { asiahelps++; }
+
+                } else if(x == "Europe"){
+                    if(y == "Dropout"){ eurdropout++; } else { eurhelps++; }
+
+                } else if(x == "America"){
+                    if(y == "Dropout"){ amidropout++; } else { amihelps++; }
+
+                } else {
+                    if(y == "Dropout"){ afrdropout++; } else { afrhelps++; }
+                }
+            }
+            Asia.push(asiahelps, asiadropout);
+            Europe.push(eurhelps, eurdropout);
+            America.push(amihelps, amidropout);
+            Africa.push(afrhelps, afrdropout);
+
+            // put the variables into the variables entries for the content and helper for the x axes names
+            entries = [['Helpseeking', 'Dropout'], Asia, Europe, America, Africa];
+            helper = ['Asia', 'Europe', 'America', 'Africa'];
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var asiaD_nrm = Math.round((100/(asiahelps+asiadropout))*asiadropout)/100;
+            var asiaH_nrm = Math.round((100/(asiahelps+asiadropout))*asiahelps)/100;
+
+            var euroD_nrm = Math.round((100/(eurhelps+eurdropout))*eurdropout)/100;
+            var euroH_nrm = Math.round((100/(eurhelps+eurdropout))*eurhelps)/100;
+
+            var amiD_nrm = Math.round((100/(amihelps+amidropout))*amidropout)/100;
+            var amiH_nrm = Math.round((100/(amihelps+amidropout))*amihelps)/100;
+
+            var afriD_nrm = Math.round((100/(afrdropout+afrhelps))*afrdropout)/100;
+            var afriH_nrm = Math.round((100/(afrdropout+afrhelps))*afrhelps)/100;
+
+            Asia_Nrm.push(asiaH_nrm, asiaD_nrm);
+            Europe_Nrm.push(euroH_nrm, euroD_nrm);
+            America_Nrm.push(amiH_nrm, amiD_nrm);
+            Africa_Nrm.push(afriH_nrm, afriD_nrm);
+
+            // put the variables into the variables entries for the content and helper for the x axes names
+            entries_nrm = [['Helpseeking', 'Dropout'], Asia_Nrm, Europe_Nrm, America_Nrm, Africa_Nrm];
+            helper_nrm = ['Asia', 'Europe', 'America', 'Africa'];
+
+            // init the stacked bar chart
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    rows: entries,
+                    type: 'bar',
+                    labels: true,
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    }
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['Asia', 'Europe', 'America', 'Africa']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // init the normalized stacked bar chart
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    rows: entries_nrm,
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            'Helpseeking': d3.format('.0%'),
+                            'Dropout': d3.format('.0%')
+                        }
+                    },
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper_nrm
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%')
+                        }
+                    }
+                }
+            });
+
+            // function for rendering the stacks new
+            // if filtering was happened
+            var renderStackNew = function(data, data_nrm){
+                stackedDropoutTendency = c3.generate({
+                    size: {
+                        height: chart_height, width: chart_width
+                    },
+                    bindto: '#stacked-dropout-tendency',
+                    data: {
+                        rows: data,
+                        type: 'bar',
+                        labels: true,
+                        groups: [
+                            ['Helpseeking', 'Dropout']
+                        ],
+                        colors: {
+                            'Helpseeking': '#3BBFE7',
+                            'Dropout': '#FEC75D'
+                        }
+                    },
+                    legend: {
+                        position: 'right'
+                    },
+
+                    axis: {
+                        x: {
+                            type: 'category',
+                            categories: helper
+                        },
+                        y: {
+                            label: 'number of students'
+                        }
+                    }
+                });
+
+                stackedDropoutTendencyNrm = c3.generate({
+                    size: {
+                        height: chart_height, width: chart_width
+                    },
+                    bindto: '#stacked-dropout-tendency-nrm',
+                    data: {
+                        rows: data_nrm,
+                        type: 'bar',
+                        labels: true,
+                        groups: [
+                            ['Helpseeking', 'Dropout']
+                        ],
+                        colors: {
+                            'Helpseeking': '#3BBFE7',
+                            'Dropout': '#FEC75D'
+                        }
+                    },
+                    legend: {
+                        position: 'right'
+                    },
+
+                    axis: {
+                        x: {
+                            type: 'category',
+                            categories: helper_nrm
+                        },
+                        y: {
+                            label: 'number of students'
+                        }
+                    }
+                });
+            };
+
+
+            // event-listener for the filtering checkboxes
+            d3.select("#filter-asia").on("input", function(){
+                // set to zero to indicate it is unchecked
+                inputfieldAsia = 0;
+                // check set to zero, indicate it is unchecked within view
+                var check = 0;
+                // run through the array with the objects
+                for(var i = 0; i < helper.length; i++){
+                    // if you find Asia, remove it from the array
+                    // make sure both Normal and NRM chart is updated
+                    if(helper[i] == 'Asia'){
+                        helper.splice(i,1);
+                        helper_nrm.splice(i,1);
+                        entries.splice(i+1, 1);
+                        entries_nrm.splice(i+1,1);
+                        renderStackNew(entries, entries_nrm);
+                        // make sure, you know, if it is checked again
+                        check = 1;
+                    }
+                }
+                // if it is unchecked, push it again
+                if(check == 0){
+                    helper.push('Asia');
+                    entries.push(Asia);
+                    helper_nrm.push('Asia');
+                    entries_nrm.push(Asia_Nrm);
+                    renderStackNew(entries, entries_nrm);
+                }
+
+            });
+
+            d3.select("#filter-europe").on("input", function(){
+                inputfieldEurope = 0;
+                var check = 0;
+                console.log("Europe clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Europe'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Europe');
+                    entries.push(Europe);
+                    helper_nrm.push('Europe');
+                    entries_nrm.push(Europe_Nrm);
+                    renderStackNew(entries, entries_nrm);
+                }
+
+            });
+
+            d3.select("#filter-america").on("input", function(){
+                inputfieldAmerica = 0;
+                var check = 0;
+                console.log("America clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'America'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('America');
+                    entries.push(America);
+                    helper_nrm.push('America');
+                    entries_nrm.push(America_Nrm);
+                    renderStackNew(entries, entries_nrm);
+                }
+
+            });
+
+            d3.select("#filter-africa").on("change", function(){
+                inputfieldAfrica = 0;
+                console.log("Africa clicked");
+                var check = 0;
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Africa'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Africa');
+                    entries.push(Africa);
+                    helper_nrm.push('Africa');
+                    entries_nrm.push(Africa_Nrm);
+                    renderStackNew(entries, entries_nrm);
+                }
+
+            });
+        });
+    };
+
+    var Facultywise = function(){
+        cleanCheckboxes();
+        var x = document.getElementById("filter-faculties");
+
+        // none == hide
+        // block == show
+
+        var hide = function(){
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        };
+
+        if(x.style.display !== "block"){
+            hide();
+        }
+
+        document.getElementById("filter-continents").style.display = "none";
+
+        var Biology = [];
+        var Economics = [];
+        var Education = [];
+        var Engineering = [];
+        var Humanities = [];
+        var Others = [];
+        var Physics = [];
+        var SocialScience = [];
+
+        var Biology_Nrm = [];
+        var Economics_Nrm = [];
+        var Education_Nrm = [];
+        var Engineering_Nrm = [];
+        var Humanities_Nrm = [];
+        var Others_Nrm = [];
+        var Physics_Nrm = [];
+        var SocialScience_Nrm = [];
+
+        var entries = [];
+        var helper = [];
+
+        var entries_nrm = [];
+        var helper_nrm = [];
+
+
+        var biodropout = 0;
+        var biohelps = 0;
+        var ecodropout = 0;
+        var ecohelps = 0;
+        var edudropout = 0;
+        var eduhelps = 0;
+        var engdropout = 0;
+        var enghelps = 0;
+        var humdropout = 0;
+        var humhelps = 0;
+        var othersdrop = 0;
+        var othershelps = 0;
+        var phydropout = 0;
+        var phyhelps = 0;
+        var socsidropout = 0;
+        var socsihelps = 0;
+
+        var bioD_nrm = 0;
+        var bioH_nrm = 0;
+        var ecoD_nrm = 0;
+        var ecoH_nrm = 0;
+        var eduD_nrm = 0;
+        var eduH_nrm = 0;
+        var engD_nrm = 0;
+        var engH_nrm = 0;
+        var humD_nrm = 0;
+        var humH_nrm = 0;
+        var phyD_nrm = 0;
+        var phyH_nrm = 0;
+        var socsiD_nrm = 0;
+        var socsiH_nrm = 0;
+        var otherD_nrm = 0;
+        var otherH_nrm = 0;
+
+        d3.csv("temp.csv").then(function(data){
+
+            for(var i = 1; i < data.length; i++){
+                var x = data[i].Dfac;
+                var y = data[i].tendency;
+
+                if(x == "Biology"){
+                    if(y == "Dropout"){ biodropout++; } else { biohelps++; }
+
+                } else if(x == "Economics"){
+                    if(y == "Dropout"){ ecodropout++; } else { ecohelps++; }
+
+                } else if(x == "Education"){
+                    if(y == "Dropout"){ edudropout++; } else { eduhelps++; }
+
+                } else if(x == "Engineering"){
+                    if(y == "Dropout"){ engdropout++; } else { enghelps++; }
+
+                } else if(x == "Humanities"){
+                    if(y == "Dropout"){ humdropout++; } else { humhelps++; }
+
+                } else if(x == "Other"){
+                    if(y == "Dropout"){ othersdrop++; } else { othershelps++; }
+
+                } else if(x == "Physics"){
+                    if(y == "Dropout"){ phydropout++; } else { phyhelps++; }
+
+                } else if(x == "Social Science"){
+                    if(y == "Dropout"){ socsidropout++; } else { socsihelps++; }
+                }
+            }
+
+            Biology.push(biohelps, biodropout);
+            Economics.push(ecohelps, ecodropout);
+            Education.push(eduhelps, edudropout);
+            Engineering.push(enghelps, engdropout);
+            Humanities.push(humhelps, humdropout);
+            Others.push(othershelps, othersdrop);
+            Physics.push(phyhelps, phydropout);
+            SocialScience.push(socsihelps, socsidropout);
+
+            entries = [['Helpseeking', 'Dropout'], Biology, Economics, Education, Engineering, Humanities, Physics, SocialScience, Others];
+            helper = ['Biology', 'Economics', 'Education', 'Engineering', 'Humanities', 'Physics', 'Social Sciences', 'Others'];
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    rows: entries,
+                    type: 'bar',
+                    labels: true,
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ]
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+
+            var init_nrm_values = function(){
+                bioD_nrm = Math.round((100/(biohelps + biodropout))*biodropout)/100;
+                bioH_nrm = Math.round((100/(biohelps + biodropout))*biohelps)/100;
+
+                ecoD_nrm = Math.round((100/(ecohelps + ecodropout))*ecodropout)/100;
+                ecoH_nrm = Math.round((100/(ecohelps + ecodropout))*ecohelps)/100;
+
+                eduD_nrm = Math.round((100/(eduhelps+edudropout))*edudropout)/100;
+                eduH_nrm = Math.round((100/(eduhelps+edudropout))*eduhelps)/100;
+
+                engD_nrm = Math.round((100/(engdropout+enghelps))*engdropout)/100;
+                engH_nrm = Math.round((100/(engdropout+enghelps))*enghelps)/100;
+
+                humD_nrm = Math.round((100/(humdropout + humhelps))*humdropout)/100;
+                humH_nrm = Math.round((100/(humdropout + humhelps))*humhelps)/100;
+
+                phyD_nrm = Math.round((100/(phydropout + phyhelps))*phydropout)/100;
+                phyH_nrm = Math.round((100/(phydropout + phyhelps))*phyhelps)/100;
+
+                socsiD_nrm = Math.round((100/(socsidropout+socsihelps))*socsidropout)/100;
+                socsiH_nrm = Math.round((100/(socsidropout+socsihelps))*socsihelps)/100;
+
+                otherD_nrm = Math.round((100/(othersdrop+othershelps))*othersdrop)/100;
+                otherH_nrm = Math.round((100/(othersdrop+othershelps))*othershelps)/100;
+            };
+
+            init_nrm_values();
+
+            Biology_Nrm.push(bioH_nrm, bioD_nrm);
+            Economics_Nrm.push(ecoH_nrm, ecoD_nrm);
+            Education_Nrm.push(eduH_nrm, eduD_nrm);
+            Engineering_Nrm.push(engH_nrm, engD_nrm);
+            Humanities_Nrm.push(humH_nrm, humD_nrm);
+            Others_Nrm.push(otherH_nrm, otherD_nrm);
+            Physics_Nrm.push(phyH_nrm, phyD_nrm);
+            SocialScience_Nrm.push(socsiH_nrm, socsiD_nrm);
+
+            entries_nrm = [['Helpseeking', 'Dropout'], Biology_Nrm, Economics_Nrm, Education_Nrm, Engineering_Nrm, Humanities_Nrm, Physics_Nrm, SocialScience_Nrm, Others_Nrm];
+            helper_nrm = ['Biology', 'Economics', 'Education', 'Engineering', 'Humanities', 'Physics', 'Social Sciences', 'Others'];
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    rows: entries_nrm,
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            'Helpseeking': d3.format('.0%'),
+                            'Dropout': d3.format('.0%')
+                        }
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    units: ' %',
+                    onclick: function (d, i) {
+                        if(d.index == 0){
+                            alert("People from Biology that:\n\n" + " - Dropout: " + biodropout + "\n" + " - Helpseek: " + biohelps);
+                        }
+                        if(d.index == 1){
+                            alert("People from Economics that:\n\n" + " - Dropout: " + ecodropout + "\n" + " - Helpseek: " + ecohelps);
+                        }
+                        if(d.index == 2){
+                            alert("People from Education that:\n\n" + " - Dropout: " + edudropout + "\n" + " - Helpseek: " + eduhelps);
+                        }
+                        if(d.index == 3){
+                            alert("People from Engineering that:\n\n" + " - Dropout: " + engdropout + "\n" + " - Helpseek: " + enghelps);
+                        }
+                        if(d.index == 4){
+                            alert("People from Humanities that:\n\n" + " - Dropout: " + humdropout + "\n" + " - Helpseek: " + humhelps);
+                        }
+                        if(d.index == 5){
+                            alert("People from Physics that:\n\n" + " - Dropout: " + phydropout + "\n" + " - Helpseek: " + phyhelps);
+                        }
+                        if(d.index == 6){
+                            alert("People from Social Sciences that:\n\n" + " - Dropout: " + socsidropout + "\n" + " - Helpseek: " + socsihelps);
+                        }
+                        if(d.index == 7){
+                            alert("People from Other Subjects that:\n\n" + " - Dropout: " + othersdrop + "\n" + " - Helpseek: " + othershelps);
+                        }
+                    }
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: helper_nrm
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%')
+                        }
+                    }
+                }
+            });
+
+            var renderStackNew = function(data, data_nrm, names, names_nrm){
+                stackedDropoutTendency = c3.generate({
+                    size: {
+                        height: chart_height, width: chart_width
+                    },
+                    bindto: '#stacked-dropout-tendency',
+                    data: {
+                        rows: data,
+                        type: 'bar',
+                        labels: true,
+                        groups: [
+                            ['Helpseeking', 'Dropout']
+                        ],
+                        colors: {
+                            'Helpseeking': '#3BBFE7',
+                            'Dropout': '#FEC75D'
+                        }
+                    },
+                    legend: {
+                        position: 'right'
+                    },
+
+                    axis: {
+                        x: {
+                            type: 'category',
+                            categories: names
+                        },
+                        y: {
+                            label: 'number of students'
+                        }
+                    }
+                });
+
+                stackedDropoutTendencyNrm = c3.generate({
+                    size: {
+                        height: chart_height, width: chart_width
+                    },
+                    bindto: '#stacked-dropout-tendency-nrm',
+                    data: {
+                        rows: data_nrm,
+                        type: 'bar',
+                        labels: true,
+                        groups: [
+                            ['Helpseeking', 'Dropout']
+                        ],
+                        colors: {
+                            'Helpseeking': '#3BBFE7',
+                            'Dropout': '#FEC75D'
+                        }
+                    },
+                    legend: {
+                        position: 'right'
+                    },
+
+                    axis: {
+                        x: {
+                            type: 'category',
+                            categories: names_nrm
+                        },
+                        y: {
+                            tick: {
+                                values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                                format: d3.format('.0%')
+                            }
+                        }
+                    }
+                });
+
+
+
+            };
+
+            d3.select("#filter-biology").on("input", function(){
+                inputfieldBiology = 0;
+                var check = 0;
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Biology'){
+                        helper.splice(i,1);
+                        helper_nrm.splice(i,1);
+                        entries.splice(i+1, 1);
+                        entries_nrm.splice(i+1,1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Biology');
+                    entries.push(Biology);
+                    helper_nrm.push('Biology');
+                    entries_nrm.push(Biology_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-economics").on("input", function(){
+                inputfieldEconomics = 0;
+                var check = 0;
+                console.log("Economics clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Economics'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Economics');
+                    entries.push(Economics);
+                    helper_nrm.push('Economics');
+                    entries_nrm.push(Economics_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-education").on("input", function(){
+                inputfieldEducation = 0;
+                var check = 0;
+                console.log("Education clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Education'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Education');
+                    entries.push(Education);
+                    helper_nrm.push('Education');
+                    entries_nrm.push(Education_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-engineering").on("change", function(){
+                inputfieldEngineering = 0;
+                console.log("Engineering clicked");
+                var check = 0;
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Engineering'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Engineering');
+                    entries.push(Engineering);
+                    helper_nrm.push('Engineering');
+                    entries_nrm.push(Engineering_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-humanities").on("input", function(){
+                inputfieldHumanities = 0;
+                var check = 0;
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Humanities'){
+                        helper.splice(i,1);
+                        helper_nrm.splice(i,1);
+                        entries.splice(i+1, 1);
+                        entries_nrm.splice(i+1,1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Humanities');
+                    entries.push(Humanities);
+                    helper_nrm.push('Humanities');
+                    entries_nrm.push(Humanities_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-physics").on("input", function(){
+                inputfieldPhysics = 0;
+                var check = 0;
+                console.log("Physics clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Physics'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Physics');
+                    entries.push(Physics);
+                    helper_nrm.push('Physics');
+                    entries_nrm.push(Physics_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-sosci").on("input", function(){
+                inputfieldSosci = 0;
+                var check = 0;
+                console.log("Social Science clicked");
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Social Sciences'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Social Sciences');
+                    entries.push(SocialScience);
+                    helper_nrm.push('Social Sciences');
+                    entries_nrm.push(SocialScience_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+
+            });
+
+            d3.select("#filter-others").on("change", function(){
+                inputfieldOthers = 0;
+                console.log("Others clicked");
+                var check = 0;
+                for(var i = 0; i < helper.length; i++){
+                    if(helper[i] == 'Others'){
+                        helper.splice(i,1);
+                        entries.splice(i+1, 1);
+                        helper_nrm.splice(i,1);
+                        entries_nrm.splice(i+1, 1);
+                        renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                        check = 1;
+                    }
+                }
+                if(check == 0){
+                    helper.push('Others');
+                    entries.push(Others);
+                    helper_nrm.push('Others');
+                    entries_nrm.push(Others_Nrm);
+                    renderStackNew(entries, entries_nrm, helper, helper_nrm);
+                }
+            });
+        });
+    };
+
+    //TODO var Degreewise
+
+    // Charts without Filtering
+    var Sexwise = function(){
+
+        cleanCheckboxes();
+        document.getElementById("filter-faculties").style.display = "none";
+        document.getElementById("filter-continents").style.display = "none";
+
+        d3.csv("temp.csv").then(function(data){
+
+            //Part for the Stacked Bar-chart
+            var Male = ["Male"];
+            var Female = ["Female"];
+
+            var maledrop = 0;
+            var malehelp = 0;
+            var femdrop = 0;
+            var femhelp = 0;
+
+            // Fill arrays for domestic and international
+            for (var i = 1; i < data.length; i++) {
+                if(data[i].Dsex == "Male"){
+                    if(data[i].tendency == "Dropout"){
+                        maledrop++;
+                    } else {
+                        malehelp++;
+                    }
+                } else {
+                    if(data[i].tendency == "Dropout"){
+                        femdrop++;
+                    } else {
+                        femhelp++;
+                    }
+                }
+            }
+
+            Male.push(maledrop, malehelp);
+            Female.push(femdrop, femhelp);
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    columns: [
+                        Male, Female
+                    ],
+                    type: 'bar',
+                    labels: true,
+                    names: {
+                        Male: 'Helpseeking',
+                        Female: 'Dropout'
+                    },
+                    colors: {
+                        'Male': '#3BBFE7',
+                        'Female': '#FEC75D'
+                    },
+                    groups: [
+                        ['Male', 'Female']
+                    ]
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['Male', 'Female']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var maledrop_nrm = Math.round((100/(maledrop+malehelp))*maledrop)/100;
+            var malehelp_nrm = Math.round((100/(maledrop+malehelp))*malehelp)/100;
+            var femdrop_nrm = Math.round((100/(femdrop+femhelp))*femdrop)/100;
+            var femhelp_nrm = Math.round((100/(femdrop+femhelp))*femhelp)/100;
+
+            var Male_Nrm = ["Male_Nrm"];
+            var Female_Nrm = ["Female_Nrm"];
+
+            Male_Nrm.push(maledrop_nrm, femdrop_nrm);
+            Female_Nrm.push(malehelp_nrm, femhelp_nrm);
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    columns: [
+                        Male_Nrm, Female_Nrm
+                    ],
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            Male_Nrm: d3.format('.0%'),
+                            Female_Nrm: d3.format('.0%')
+                        }
+                    },
+                    names: {
+                        Male_Nrm: 'Helpseeking',
+                        Female_Nrm: 'Dropout'
+                    },
+                    colors: {
+                        'Male_Nrm': '#3BBFE7',
+                        'Female_Nrm': '#FEC75D'
+                    },
+                    groups: [
+                        ['Male_Nrm', 'Female_Nrm']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['Male', 'Female']
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%'),
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    var Nationwise = function(){
+        cleanCheckboxes();
+        document.getElementById("filter-faculties").style.display = "none";
+        document.getElementById("filter-continents").style.display = "none";
+
+        d3.csv("temp.csv").then(function(data){
+
+            //Part for the Stacked Bar-chart
+            var Domestic = ["Domestic"];
+            var International = ["International"];
+
+            var cdd = 0;
+            var cdi = 0;
+            var chd = 0;
+            var chi = 0;
+
+            // Fill arrays for domestic and international
+            for (var i = 1; i < data.length; i++) {
+                if(data[i].Dstud == "Domestic"){
+                    if(data[i].tendency == "Dropout"){
+                        cdd++;
+                    } else {
+                        chd++;
+                    }
+                } else {
+                    if(data[i].tendency == "Dropout"){
+                        cdi++;
+                    } else {
+                        chi++;
+                    }
+                }
+            }
+
+            Domestic.push(cdd, chd);
+            International.push(cdi, chi);
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    columns: [
+                        Domestic, International
+                    ],
+                    type: 'bar',
+                    labels: true,
+                    colors: {
+                        'Domestic': '#3BBFE7',
+                        'International': '#FEC75D'
+                    },
+                    names: {
+                        Domestic: 'Helpseeking',
+                        International: 'Dropout'
+                    },
+                    groups: [
+                        ['Domestic', 'International']
+                    ]
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['International Students', 'Domestic Students']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var cdd_nrm = Math.round((100/(cdd+cdi))*cdd)/100;
+            var cdi_nrm = Math.round((100/(cdd+cdi))*cdi)/100;
+            var chd_nrm = Math.round((100/(chd+chi))*chd)/100;
+            var chi_nrm = Math.round((100/(chd+chi))*chi)/100;
+
+            var Domestic_Nrm = ["Domestic_Nrm"];
+            var International_Nrm = ["International_Nrm"];
+
+            Domestic_Nrm.push(cdd_nrm, chd_nrm);
+            International_Nrm.push(cdi_nrm, chi_nrm);
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    columns: [
+                        Domestic_Nrm, International_Nrm
+                    ],
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            Domestic_Nrm: d3.format('.0%'),
+                            International_Nrm: d3.format('.0%')
+                        }
+                    },
+                    colors: {
+                        'Domestic_Nrm': '#3BBFE7',
+                        'International_Nrm': '#FEC75D'
+                    },
+                    names: {
+                        Domestic_Nrm: 'Helpseeking',
+                        International_Nrm: 'Dropout'
+                    },
+                    groups: [
+                        ['Domestic_Nrm', 'International_Nrm']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['International Students', 'Domestic Students']
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%'),
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    var Agewise = function(){
+        cleanCheckboxes();
+        document.getElementById("filter-faculties").style.display = "none";
+        document.getElementById("filter-continents").style.display = "none";
+
+        d3.csv("temp.csv").then(function(data){
+
+            var under25d = 0;
+            var under25h = 0;
+            var betw25n29d = 0;
+            var betw25n29h = 0;
+            var upper30d = 0;
+            var upper30h = 0;
+
+            for(var i = 1; i < data.length; i++){
+                var x = data[i].Dage;
+                var y = data[i].tendency;
+                if(x <= 25){
+                    if(y == "Dropout"){ under25d++; } else { under25h++; }
+                } else if(x <= 29 && x >= 25){
+                    if(y == "Dropout"){ betw25n29d++; } else { betw25n29h++; }
+                } else if(x >= 30){
+                    if(y == "Dropout"){ upper30d++; } else { upper30h++; }
+                }
+            }
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [under25h, under25d],
+                        [betw25n29h, betw25n29d],
+                        [upper30h, upper30d]
+                    ],
+                    type: 'bar',
+                    labels: true,
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    }
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['0 - 24', '25 - 29', '30+']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var underD_nrm = Math.round((100/(under25d+under25h))*under25d)/100;
+            var underH_nrm = Math.round((100/(under25d+under25h))*under25h)/100;
+            var betwD_nrm = Math.round((100/(betw25n29d+betw25n29h))*betw25n29d)/100;
+            var betwH_nrm = Math.round((100/(betw25n29d+betw25n29h))*betw25n29h)/100;
+            var overD_nrm = Math.round((100/(upper30d+upper30h))*upper30d)/100;
+            var overH_nrm = Math.round((100/(upper30d+upper30h))*upper30h)/100;
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [underH_nrm, underD_nrm],
+                        [betwH_nrm, betwD_nrm],
+                        [overH_nrm, overD_nrm]
+                    ],
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            'Helpseeking': d3.format('.0%'),
+                            'Dropout': d3.format('.0%')
+                        }
+                    },
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['0 - 24', '25 - 29', '30+']
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%'),
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    var Riskwise = function(){
+        cleanCheckboxes();
+        document.getElementById("filter-faculties").style.display = "none";
+        document.getElementById("filter-continents").style.display = "none";
+
+        d3.csv("temp.csv").then(function(data){
+
+            var highdrop = 0;
+            var highhelps = 0;
+            var lowdrop = 0;
+            var lowhelps = 0;
+            var nodrop = 0;
+            var nohelp = 0;
+
+            for(var i = 1; i < data.length; i++){
+                var x = data[i].risk;
+                var y = data[i].tendency;
+                if(x == "High Risk"){
+                    if(y == "Dropout"){ highdrop++; } else { highhelps++; }
+                } else if(x == "Low Risk"){
+                    if(y == "Dropout"){ lowdrop++; } else { lowhelps++; }
+                } else if(x == "No Risk"){
+                    if(y == "Dropout"){ nodrop++; } else { nohelp++; }
+                }
+            }
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [nohelp, nodrop],
+                        [lowhelps, lowdrop],
+                        [highhelps, highdrop]
+                    ],
+                    type: 'bar',
+                    labels: true,
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ]
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['No Risk','Low Risk','High Risk']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var highD_nrm = Math.round((100/(highhelps+highdrop))*highdrop)/100;
+            var highH_nrm = Math.round((100/(highhelps+highdrop))*highhelps)/100;
+
+            var lowD_nrm = Math.round((100/(lowdrop+lowhelps))*lowdrop)/100;
+            var lowH_nrm = Math.round((100/(lowdrop+lowhelps))*lowhelps)/100;
+
+            var noD_nrm = Math.round((100/(nodrop+nohelp))*nodrop)/100;
+            var noH_nrm = Math.round((100/(nodrop+nohelp))*nohelp)/100;
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [noH_nrm, noD_nrm],
+                        [lowH_nrm, lowD_nrm],
+                        [highH_nrm, highD_nrm]
+                    ],
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            'Helpseeking': d3.format('.0%'),
+                            'Dropout': d3.format('.0%')
+                        }
+                    },
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['No Risk', 'Low Risk', 'High Risk']
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%'),
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    var Reasonwise = function(){
+        cleanCheckboxes();
+        document.getElementById("filter-faculties").style.display = "none";
+        document.getElementById("filter-continents").style.display = "none";
+
+        d3.csv("temp.csv").then(function(data){
+
+            var disdrop = 0;
+            var dishelp = 0;
+            var harddrop = 0;
+            var hardhelp = 0;
+            var noedrop = 0;
+            var noehelp = 0;
+            var otherdrop = 0;
+            var otherhelp = 0;
+
+            for(var i = 1; i < data.length; i++){
+                var x = data[i].reason;
+                var y = data[i].tendency;
+                if(x == "Disinterest Content"){
+                    if(y == "Dropout"){ disdrop++; } else { dishelp++; }
+                } else if(x == "No Enjoy"){
+                    if(y == "Dropout"){ noedrop++; } else { noehelp++; }
+                } else if(x == "Hardship Course"){
+                    if(y == "Dropout"){ harddrop++; } else { hardhelp++; }
+                } else {
+                    if(y == "Dropout"){ otherdrop++; } else { otherhelp++; }
+                }
+            }
+
+            var stackedDropoutTendency = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [dishelp, disdrop],
+                        [hardhelp, harddrop],
+                        [noehelp, noedrop],
+                        [otherhelp, otherdrop]
+                    ],
+                    type: 'bar',
+                    labels: true,
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ]
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['Disinterest', 'Hardship', 'No Enjoy', 'Other']
+                    },
+                    y: {
+                        label: 'number of students'
+                    }
+                }
+            });
+
+            // Part for the Normalized Stacked Bar-chart
+            //calculate percentages for the tendencies
+            var disD_nrm = Math.round((100/(disdrop+dishelp))*disdrop)/100;
+            var disH_nrm = Math.round((100/(disdrop+dishelp))*dishelp)/100;
+
+            var hardD_nrm = Math.round((100/(harddrop+hardhelp))*harddrop)/100;
+            var hardH_nrm = Math.round((100/(harddrop+hardhelp))*hardhelp)/100;
+
+            var noeD_nrm = Math.round((100/(noedrop+noehelp))*noedrop)/100;
+            var noeH_nrm = Math.round((100/(noedrop+noehelp))*noehelp)/100;
+
+            var otherD_nrm = Math.round((100/(otherdrop+otherhelp))*otherdrop)/100;
+            var otherH_nrm = Math.round((100/(otherdrop+otherhelp))*otherhelp)/100;
+
+            var stackedDropoutTendencyNrm = c3.generate({
+                size: {
+                    height: chart_height, width: chart_width
+                },
+                bindto: '#stacked-dropout-tendency-nrm',
+                data: {
+                    rows: [
+                        ['Helpseeking', 'Dropout'],
+                        [disH_nrm, disD_nrm],
+                        [hardH_nrm, hardD_nrm],
+                        [noeH_nrm, noeD_nrm],
+                        [otherH_nrm, otherD_nrm]
+                    ],
+                    type: 'bar',
+                    labels: {
+                        format: {
+                            'Helpseeking': d3.format('.0%'),
+                            'Dropout': d3.format('.0%')
+                        }
+                    },
+                    colors: {
+                        'Helpseeking': '#3BBFE7',
+                        'Dropout': '#FEC75D'
+                    },
+                    groups: [
+                        ['Helpseeking', 'Dropout']
+                    ],
+                    units: ' %'
+                },
+                legend: {
+                    position: 'right'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: ['Disinterest', 'Hardship', 'No Enjoy', 'Other']
+                    },
+                    y: {
+                        tick: {
+                            values: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                            format: d3.format('.0%'),
+                        }
+                    }
+                }
+            });
+        });
+    };
+
+    // Function for Selection
+    var changeAttributes = function(attribute){
+        if(attribute == "nationality") {
+            Nationwise();
+        } else if(attribute == "faculty"){
+            Facultywise();
+        } else if(attribute == "continent"){
+            Continentwise();
+        } else if(attribute == "reason"){
+            Reasonwise();
+        } else if(attribute == "risk"){
+            Riskwise();
+        } else if(attribute == "age"){
+            Agewise();
+        } else if(attribute == "sex"){
+            Sexwise();
+        }
+    };
+
+    d3.select("#option1").on("input", changeAttributes);
+
+    Nationwise();
+
+
+</script>
+</body>
+</html>
