@@ -18,9 +18,9 @@ The project scenario of the current work is to help university stakeholders (e.g
 - C3.js 
 - Bootstrap
 
-![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)
+![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png) ![github-small](https://user-images.githubusercontent.com/41241181/64736433-e7ecc380-d4ea-11e9-8618-2bcb4d7f4482.png)
 
-![github-small](https://user-images.githubusercontent.com/41241181/64736433-e7ecc380-d4ea-11e9-8618-2bcb4d7f4482.png)
+
 
 # Screenshots of the Visualization
 
