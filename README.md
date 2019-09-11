@@ -25,12 +25,12 @@ The project scenario of the current work is to help university stakeholders (e.g
 # Screenshots of the Visualization
 
 - Stacked bar chart – Tendencies and age
-![github-small](https://user-images.githubusercontent.com/41241181/64735265-81ff3c80-d4e8-11e9-80f4-c28d5fa8cf7e.png)
+![github-small](https://user-images.githubusercontent.com/41241181/64738688-305ab000-d4f0-11e9-979a-4f83bb4b9bed.png)
 
 - Stacked bar chart – Tendencies and faculty
-![github-small](https://user-images.githubusercontent.com/41241181/64735430-d0144000-d4e8-11e9-89c6-21e6770c65cd.png)
+![github-small](https://user-images.githubusercontent.com/41241181/64738712-449ead00-d4f0-11e9-9c9a-2ec108830b20.png)
 
-## How to Run
+# How to Run
 
 - Clone the whole project and run it through browser.
 
