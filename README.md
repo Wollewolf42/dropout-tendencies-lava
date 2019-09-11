@@ -10,12 +10,14 @@ The project scenario of the current work is to help university stakeholders (e.g
 # Project Architecture
 	
 ![github-small](https://user-images.githubusercontent.com/41241181/64734059-32b80c80-d4e6-11e9-9b14-a7a2cfc91ab5.png)
-**Tools for Visualization**
 
- - C3.js 
- ![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)
+# Tools for Visualization
+
+- C3.js 
+![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)
 
 # Screenshots of the Visualization
+
 - Stacked bar chart – Tendencies and age
 ![github-small](https://user-images.githubusercontent.com/41241181/64735265-81ff3c80-d4e8-11e9-80f4-c28d5fa8cf7e.png)
 
@@ -39,7 +41,8 @@ The project scenario of the current work is to help university stakeholders (e.g
 
  - For providing us such a platform to learn the theoritical concept as well as the practical skills
  - To improve communication, presentation ,theoritical and practical skills 
- - And having the oppurtunity to brainstorm ideas during workshops and as well as have the chance to work with globally minded  students 
+ - And having the oppurtunity to brainstorm ideas during group meetings and as well as have the chance to work with globally minded  students 
+ - This is Master Project of Summer Semester 2019 in University of Duisburg-Essen
  
 
 
