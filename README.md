@@ -1,4 +1,4 @@
-# dropout-tendencies-lava
+# Dropout Tendencies LAVA
 The project scenario of the current work is to help university stakeholders (e.g. university professors, university directors, managers, government etc.) and also interested students to discover and understand the underlying reasons behind drop-out and help-seeking tendencies of students while studying.
   
 # Features
@@ -13,15 +13,17 @@ The project scenario of the current work is to help university stakeholders (e.g
 **Tools for Visualization**
 
  - C3.js 
- ![github-small]()
+ ![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)
 
 # Screenshots of the Visualization
+- Stacked bar chart – Tendencies and age
+![github-small](https://user-images.githubusercontent.com/41241181/64735265-81ff3c80-d4e8-11e9-80f4-c28d5fa8cf7e.png)
 
-![github-small]()
-![github-small]()
-## Installation
+- Stacked bar chart – Tendencies and faculty
+![github-small](https://user-images.githubusercontent.com/41241181/64735430-d0144000-d4e8-11e9-89c6-21e6770c65cd.png)
 
-**How to Run**
+## How to Run
+
 - Clone the whole project and run it through browser.
 
 **[Demo](https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be)**
