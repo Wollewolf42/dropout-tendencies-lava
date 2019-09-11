@@ -18,7 +18,7 @@ The project scenario of the current work is to help university stakeholders (e.g
 - C3.js 
 - Bootstrap
 
-![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)     ![github-small](https://user-images.githubusercontent.com/41241181/64736433-e7ecc380-d4ea-11e9-8618-2bcb4d7f4482.png)
+![github-small](https://user-images.githubusercontent.com/41241181/64735155-48c6cc80-d4e8-11e9-9cae-6310e69801c9.png)                  ![github-small](https://user-images.githubusercontent.com/41241181/64736433-e7ecc380-d4ea-11e9-8618-2bcb4d7f4482.png)
 
 
 
@@ -48,7 +48,7 @@ The project scenario of the current work is to help university stakeholders (e.g
  - For providing us such a platform to learn the theoritical concept as well as the practical skills
  - To improve communication, presentation ,theoritical and practical skills 
  - And having the oppurtunity to brainstorm ideas during group meetings and as well as have the chance to work with globally minded  students 
- - This is Master Project of Summer Semester 2019 in University of Duisburg-Essen
+ - This is Master Project of Summer Semester 2019 of SOCO Department, University of Duisburg-Essen 
  
 
 
