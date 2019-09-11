@@ -1,37 +1,35 @@
 # dropout-tendencies-lava
-This project was run at university of duisburg-essen at the lava-project in winter term 2019/2020.
-
-Youtube Video of the project: https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be
-
-
+The project scenario of the current work is to help university stakeholders (e.g. university professors, university directors, managers, government etc.) and also interested students to discover and understand the underlying reasons behind drop-out and help-seeking tendencies of students while studying.
   
 # Features
 **Analysis of Student Data**
- - 
+ - Deliver visualization about student data
+ - Help improving Educational System 
+ - Problem Awareness
 
 
-  
 # Project Architecture
 	
 
 **Tools for Visualization**
 
- - D3.js 
+ - C3.js 
+ 
 
 # Screenshots of the Visualization
-
-
-**Interactive Bar Charts**
 
 
 ## Installation
 
 **How to Run**
+Clone the whole project and run it through browser.
+
+**[Demo](https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be)**
 
 
 # Group Members
 
-- Authors: V. Yücepur, A. Khan, E. Lohoff and E. Valipour
+- V. Yücepur, A. Khan, E. Lohoff and E. Valipour
 
 
 # Evaluation 
