@@ -45,9 +45,9 @@ The project scenario of the current work is to help university stakeholders (e.g
 # Evaluation 
  **We are very thankful to [Prof. Dr. Mohamed Amine Chatti](https://www.uni-due.de/soco/people/mohamed-chatti.php) and [Dr.    Arham Muslim](https://www.uni-due.de/soco/people/arham-muslim.php)**
 
- - For providing us such a platform to learn the theoritical concept as well as the practical skills
- - To improve communication, presentation ,theoritical and practical skills 
- - And having the oppurtunity to brainstorm ideas during group meetings and as well as have the chance to work with globally minded  students 
+ - For providing us such a platform to learn the theoritical and practical concept
+ - To improve communication and presentation skills 
+ - And having the oppurtunity to brainstorm ideas during group meetings and as well as have the chance to work with globally      minded  students 
  - This is Master Project of Summer Semester 2019 of SOCO Department, University of Duisburg-Essen 
  
 
