@@ -34,7 +34,7 @@ The project scenario of the current work is to help university stakeholders (e.g
 
 - Clone the whole project and run it through browser.
 
-**[Demo](https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be)**
+- **[Demo](https://www.youtube.com/watch?v=tRveNCFdF3A&feature=youtu.be)**
 
 
 # Group Members
