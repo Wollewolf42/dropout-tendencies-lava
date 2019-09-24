@@ -30,6 +30,19 @@ The project scenario of the current work is to help university stakeholders (e.g
 - Stacked bar chart – Tendencies and faculty
 ![github-small](https://user-images.githubusercontent.com/41241181/64738712-449ead00-d4f0-11e9-9c9a-2ec108830b20.png)
 
+- Distribution of risk - Uni support
+![github-small](https://github.com/Wollewolf42/dropout-tendencies-lava/blob/master/keev-project/risk-pics/risk.png)
+
+- Distribution of risk - Study motivation
+![github-small](https://github.com/Wollewolf42/dropout-tendencies-lava/blob/master/keev-project/risk-pics/risk1.png)
+
+- Distribution of risk - Study happiness
+![github-small](https://github.com/Wollewolf42/dropout-tendencies-lava/blob/master/keev-project/risk-pics/risk2.png)
+
+- Distribution of risk - Exam expectations
+![github-small](https://github.com/Wollewolf42/dropout-tendencies-lava/blob/master/keev-project/risk-pics/risk3.png)
+
+
 # How to Run
 
 - Clone the whole project and run it through browser.
